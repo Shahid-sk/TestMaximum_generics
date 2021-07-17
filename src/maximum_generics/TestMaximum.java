@@ -1,30 +1,47 @@
 package maximum_generics;
 
-import java.util.Arrays;
+public class TestMaximum<T extends Comparable<T>>
+{
 
-public class TestMaximum<E extends Comparable<E>> {
-
-	E[] myArray;
-
-	public TestMaximum(E[] myArray) {
+	private T[] myArray;
+	public TestMaximum(T[] myArray)
+	{
 		super();
-		this.myArray = myArray;
+		this.myArray=myArray;
+	}
+	public static void main(String[] args) 
+	{
+		Integer[] intArray = {1,2,3,4,5};
+		Double[] doubleArray = {1.1,2.2,3.3,4.4};
+		Character[] charArray = {'H','E','L','L','O'};
+		
+		TestMaximum<Integer>printIntegerArray = new TestMaximum<>(intArray);
+		printIntegerArray.sortElements();
+		TestMaximum<Double> printDoubleArray = new TestMaximum<>(doubleArray);
+		printDoubleArray.sortElements();
+		TestMaximum<Character> printCharacterArray = new TestMaximum<>(charArray);
+		printCharacterArray.sortElements();
+		
+	}
+	private T[] sortElements() {
+		int n = myArray.length;
+		for(int i = 0;i<n;i++)
+		{
+			for(int j=0;j<n-i-1;j++)
+			{
+				if(myArray[j].compareTo(myArray[j+1])>0)
+				{
+					swapElements(j,myArray);
+				}
+			}
+		}
+		return myArray;
+	}
+	private void swapElements(int j, T[] myArray2) {
+		T temp = myArray[j];
+		myArray[j] = myArray[j+1];
+		myArray[j+1] = temp;
+		
 	}
 
-	public static <E extends Comparable<E>> E maximum(E[] myArray) {
-		Arrays.sort(myArray);
-		int length = myArray.length;
-		E max = myArray[length - 1];
-		return max;
-	}
-
-	public static void main(String args[]) {
-		Integer[] maximum_int = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-		System.out.println(maximum(maximum_int));
-		Float[] maximum_float = { 1.6f, 1.66f, 2.5f, 2.55f, 3.5f, 3.55f };
-		System.out.println(maximum(maximum_float));
-		String[] maximum_string = { "a", "b", "c", "d" };
-		System.out.println(maximum(maximum_string));
-
-	}
 }
