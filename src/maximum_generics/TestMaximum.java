@@ -1,62 +1,30 @@
 package maximum_generics;
 
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class TestMaximum<E extends Comparable<E>> {
-	E x, y, z;
 
-	public TestMaximum(E x, E y, E z) {
+	E[] myArray;
+
+	public TestMaximum(E[] myArray) {
 		super();
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		this.myArray = myArray;
 	}
 
-	public E maximum() {
-		return TestMaximum.testMax(x, y, z);
-	}
-
-	public static <E extends Comparable<E>> E testMax(E x, E y, E z) {
-
-		E maximum = x;
-		if (y.compareTo(maximum) > 0) {
-			maximum = y;
-		}
-		if (z.compareTo(maximum) > 0) {
-			maximum = z;
-		}
-		return maximum;
-	}
-
-	public static <E> void printMax(E x, E y, E z, E maximum) {
-		System.out.printf("Max of %s,%s and %s is %s \n ", x, y, z, maximum);
+	public static <E extends Comparable<E>> E maximum(E[] myArray) {
+		Arrays.sort(myArray);
+		int length = myArray.length;
+		E max = myArray[length - 1];
+		return max;
 	}
 
 	public static void main(String args[]) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("enter x,y,z values for integer data");
-		Integer a = sc.nextInt();
-		Integer b = sc.nextInt();
-		Integer c = sc.nextInt();
-		System.out.println("maximum value is:" + testMax(a, b, c));
-		TestMaximum<Integer> printMaxInteger = new TestMaximum<Integer>(a, b, c);
-		printMaxInteger.maximum();
-
-		System.out.println("enter x,y,z values for float data");
-		Float a1 = sc.nextFloat();
-		Float b1 = sc.nextFloat();
-		Float c1 = sc.nextFloat();
-		System.out.println("maximum value is:" + testMax(a1, b1, c1));
-		TestMaximum<Float> printMaxFloat = new TestMaximum<Float>(a1, b1, c1);
-		printMaxFloat.maximum();
-		System.out.println("enter x,y,z values for string data");
-		String a2 = sc.next();
-		String b2 = sc.next();
-		String c2 = sc.next();
-		TestMaximum<String> printMaxString = new TestMaximum<String>(a2, b2, c2);
-		printMaxString.maximum();
-		System.out.println("maximum value is:" + testMax(a2, b2, c2));
-		sc.close();
+		Integer[] maximum_int = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+		System.out.println(maximum(maximum_int));
+		Float[] maximum_float = { 1.6f, 1.66f, 2.5f, 2.55f, 3.5f, 3.55f };
+		System.out.println(maximum(maximum_float));
+		String[] maximum_string = { "a", "b", "c", "d" };
+		System.out.println(maximum(maximum_string));
 
 	}
 }
