@@ -3,24 +3,24 @@ package maximum_generics;
 import java.util.Scanner;
 
 public class TestMaximum {
-	public static float testMax(Float number1, Float number2, Float number3) {
+	public static String testMax(String name1, String name2, String name3) {
 
-		Float maximumNumber = number1;
-		if (number2.compareTo(maximumNumber) > 0) {
-			maximumNumber = number2;
+		String maximum = name1;
+		if (name2.compareTo(maximum) > 0) {
+			maximum = name2;
 		}
-		if (number3.compareTo(maximumNumber) > 0) {
-			maximumNumber = number3;
+		if (name3.compareTo(maximum) > 0) {
+			maximum = name3;
 		}
-		return maximumNumber;
+		return maximum;
 	}
 
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("enter x,y,z value");
-		Float x = sc.nextFloat();
-		Float y = sc.nextFloat();
-		Float z = sc.nextFloat();
+		String x = sc.next();
+		String y = sc.next();
+		String z = sc.next();
 		sc.close();
 		System.out.println("maximum value is:" + testMax(x, y, z));
 	}
